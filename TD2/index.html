@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="worker.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="main.js"></script>
 </head>
 <body>
 
 <!-- Titre-->
 <div class="container">
-  <h1>Compteur de jettons</h1>
+  <h1>Compteur de jetons</h1>
 </div>
 
 <div class ="primaryBox">
@@ -39,17 +40,17 @@
       <div class="insideSecond">
         <!-- Boutons -->
         <div>
-          <button type="button" class="btn btn-primary btn-lg btn-block">Compter!</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" id="compter">Compter!</button>
           <br>
-          <button type="button" class="btn btn-danger btn-lg btn-block">Annuler</button>
+          <button type="button" class="btn btn-danger btn-lg btn-block" id="cancel">Annuler</button>
         </div>
       </div>
 
       <div class="insideSecond">
         <!--Affichage-->
-        <div class="containerJettons">
-          <p id="nombreJettons">0</p>
-          <p id="etatCompter">Jettons</p>
+        <div class="containerJetons">
+          <output id="nombreJetons">0</output>
+          <p id="etatCompter">Jetons</p>
         </div>
       </div>
     </div>
