@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TD2 - LOG2420 - Equipe 18</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="worker.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!-- Titre-->
+<div class="container">
+  <h1>Compteur de jettons</h1>
+</div>
+
+<div class ="primaryBox">
+
+  <!--Zone de texte-->
+  <div class="insidePrimary">
+    <div class="form-group">
+      <label for="comment">Entre un text :</label>
+      <textarea class="form-control" rows="15" id="comment"></textarea>
+    </div>
+  </div>
+
+  <div class="insidePrimary">
+    
+    <!--Barre de progression-->
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped active" role="progressbar"
+      aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+        <p id="progression">40%</p>
+      </div>
+    </div>
+    <div class="secondContainer">
+      <div class="insideSecond">
+        <!-- Boutons -->
+        <div>
+          <button type="button" class="btn btn-primary btn-lg btn-block">Compter!</button>
+          <br>
+          <button type="button" class="btn btn-danger btn-lg btn-block">Annuler</button>
+        </div>
+      </div>
+
+      <div class="insideSecond">
+        <!--Affichage-->
+        <div class="containerJettons">
+          <p id="nombreJettons">0</p>
+          <p id="etatCompter">Jettons</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
