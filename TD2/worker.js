@@ -6,9 +6,10 @@ self.addEventListener('message', function(e) {
 	var gen = compteur.compterJetons(e.data);
 	var totalWords = 0;
 	var pourcent = 0;
-	while(gen.next().value !== undefined){
+	while(gen.next().value != undefined){
 		totalWords = compteur.getJetons();
+		postMessage(totalWords);
 		}
-	postMessage(totalWords);
+	
    
 }, false);
