@@ -86,3 +86,11 @@ body{
     margin: 10px;
 }
 
+@media screen and (max-width: 480px) {
+    .primaryBox
+    {
+    	-webkit-flex-direction: column-reverse;
+    	flex-direction: column-reverse;
+	}
+
+}
