@@ -24,12 +24,13 @@ body{
 	color: white;
 }
 
-/*Barre de progression*/
+/*Cadre de la barre de progression*/
 .progress
 {
-	
+	background-color: black;
 }
 
+/*Barre de progression*/
 .progress-bar{
 	width: 0%
 }
@@ -70,7 +71,8 @@ body{
 	font-size: 30px;
 }
 /*******************************************************/
-/*FlexBox*/
+/*************FlexBox********************/
+/*container principal du projet*/
 .primaryBox {
     display: -webkit-flex;
     display: flex;
@@ -79,23 +81,26 @@ body{
     margin: 10px;
 }
 
+/*bloc du container principal*/
 .insidePrimary {
     width: 90%;
     height: 90%;
     margin: 10px;
 }
 
+/*container qui est contenu dans le container principal*/
 .secondContainer{
 	display: -webkit-flex;
     display: flex;
 }
-
+/*bloc du second container*/
 .insideSecond{
 	width: 90%;
     height: 90%;
     margin: 10px;
 }
 
+/*Les flexBox se redimmentionnent quand la page est de 480px ou moins*/
 @media screen and (max-width: 480px) {
     .primaryBox
     {
