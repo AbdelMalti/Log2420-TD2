@@ -1,8 +1,10 @@
 var w;
+var isStartAlreadyClicked = false;
 
 $(document).ready(function(){
 	$("#compter").click(startWorker);
 
+	$("#cancel").attr("disabled", true);
 	$("#cancel").click(stopWorker);
 });
 
@@ -18,8 +20,12 @@ function startWorker(){
 			$("#nombreJetons").html(event.data.words);
 			$("#progression").html(event.data.percentage + "%");
 
-			$(".progress-bar").css("width", event.data.percentage + "%")
-			$("#progression").css("width", event.data.percentage + "%")
+			$(".progress-bar").css("width", event.data.percentage + "%");
+			$("#progression").css("width", event.data.percentage + "%");
+
+			$("#compter").attr("disabled", true);
+			$("#cancel").attr("disabled", false);
+			isStartAlreadyClicked = true;
 		};
 	} else {
 		$("#nombreJetons").html("Votre navigateur ne supporte pas les Web Workers...");
@@ -27,7 +33,17 @@ function startWorker(){
 }
 
 function stopWorker(){
-	$("#nombreJetons").text("Annuler");
-	w.terminate();
-    w = undefined;
+	if(isStartAlreadyClicked)
+		{
+			$("#nombreJetons").text("Annuler");
+			w.terminate();
+    		w = undefined;
+    		isStartAlreadyClicked = false;
+    		
+			$(".progress-bar").css("width", 0 + "%");
+			$("#progression").css("width", 0 + "%");
+		}
+	$("#cancel").attr("disabled", true);
+	$("#compter").attr("disabled", false);
+	
 }
