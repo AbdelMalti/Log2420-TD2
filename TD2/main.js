@@ -11,13 +11,15 @@ function startWorker(){
 		if(typeof(w) == "undefined") {
 			w = new Worker("worker.js");
 		}
+
 		w.postMessage($("#comment").val());
 
-		//alert($("#comment").val());
-
 		w.onmessage = function(event) {
-			$("#nombreJetons").html(event.data);
-			console.log(event.data);
+			$("#nombreJetons").html(event.data.words);
+			$("#progression").html(event.data.percentage + "%");
+
+			$(".progress-bar").css("width", event.data.percentage + "%")
+			$("#progression").css("width", event.data.percentage + "%")
 		};
 	} else {
 		$("#nombreJetons").html("Votre navigateur ne supporte pas les Web Workers...");

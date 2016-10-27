@@ -1,5 +1,6 @@
 body{
-	background-color: rgb(102, 102, 102);
+	background-color: rgb(128, 128, 128);
+	
 	color: white;
 }
 
@@ -26,6 +27,14 @@ body{
 /*Barre de progression*/
 .progress
 {
+	
+}
+
+.progress-bar{
+	width: 0%
+}
+
+.progress-bar  progress-bar-striped{
 
 }
 
@@ -52,6 +61,11 @@ body{
 	font-size: 48px;
 }
 
+#nombreJetons{
+	color : black;
+	text-align: center;
+	font-size: 48px;
+}
 #etatCompter{
 	font-size: 30px;
 }
@@ -62,12 +76,10 @@ body{
     display: flex;
     width: 90%;
     height: 90%;
-    background-color: lightgrey;
     margin: 10px;
 }
 
 .insidePrimary {
-    background-color: cornflowerblue;
     width: 90%;
     height: 90%;
     margin: 10px;
@@ -76,11 +88,9 @@ body{
 .secondContainer{
 	display: -webkit-flex;
     display: flex;
-    background-color: red;
 }
 
 .insideSecond{
-	background-color: yellow;
 	width: 90%;
     height: 90%;
     margin: 10px;
