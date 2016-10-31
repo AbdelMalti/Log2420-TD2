@@ -6,6 +6,10 @@ $(document).ready(function(){
 	$("#cancel").attr("disabled", true);//on ne doit pas pouvoir cliquer sur ce bouton au debut, sinon on va detruire un worker qui a deja ete detruit.
 	
 	$("#cancel").click(stopWorker); //la fonction stopWorker est appeler au clique de ce bouton
+	
+	$("#comment").on('change keyup paste', function() {
+		textChange();
+	});
 });
 
 /***
@@ -25,6 +29,10 @@ function startWorker(){
 		if(typeof(w) == "undefined") {
 			w = new Worker("worker.js"); //Creation d'un objet qui permet de faire le lien entre le fichier worker.js et le main.js
 		}
+		$("#nombreJetons").html("0");
+		$("#etatCompter").html("Jetons");
+		$("#compter").attr("disabled", true); //Rend impossible d'appuyer sur le bouton 2 fois
+		$("#cancel").attr("disabled", false); //Rend possible d'annuler le compte en cours
 
 		w.postMessage($("#comment").val()); //Envoie du text dans la text-area a worker.js
 
@@ -36,8 +44,7 @@ function startWorker(){
 			$(".progress-bar").css("width", event.data.percentage + "%"); //Modifie la taille de la bar de progression en bleu.
 			$("#progression").css("width", event.data.percentage + "%"); //Modifie la position du pourcentage #progression dans la bar de progression.
 
-			$("#compter").attr("disabled", true); //Rend impossible d'appuyer sur le bouton 2 fois
-			$("#cancel").attr("disabled", false); //Rend possible d'annuler le compte en cours
+			
 
 		};
 	} else {
@@ -56,9 +63,13 @@ function startWorker(){
 
 function stopWorker()
 {
-	$("#nombreJetons").text("Annuler"); //Text a afficher dans le cas ou on annule le compte
-	w.terminate(); //on met fin au worker
-	w = undefined; //on met le worker a undefined afin de pouvoir le recreer dans startWorker plutard
+	$("#etatCompter").html("Jetons");
+	$("#nombreJetons").text("-"); //Texte a afficher dans le cas ou on annule le compte
+	
+	if( w != undefined){
+		w.terminate(); //on met fin au worker
+		w = undefined; //on met le worker a undefined afin de pouvoir le recreer dans startWorker plus tard
+	}
 
 //on reinitialise les donnees de la bar de progression pour eviter un effet elastique lorsqu'on reprend le compte plustard
 	$(".progress-bar").css("width", 0 + "%"); //La taille de la bar de progression est reinitialiser a zero.
@@ -69,5 +80,36 @@ function stopWorker()
 	//Apres avoir annuler, on ne doit pas pouvoir recliquer sur ce bouton, sinon on va detruire un worker qui a deja ete detruit.
 	$("#cancel").attr("disabled", true);
 	$("#compter").attr("disabled", false); //Et on doit pouvoir reappuyer sur le bouton compter.
+	
+}
+
+/***
+@nom : textChange
+
+@description :  -fonction qui indique un changement au texte
+* 				-permet de réappuyer sur le bouton compter
+* 				-Indique que le compte de jetons n'est plus valide pour ce texte, mais l'est pour un vieux texte.
+* 				-remet la barre de p-rogression à 0
+***/
+
+function textChange()
+{
+	$("#compter").attr("disabled", false); // on peut compter le nouveau texte
+	
+	if( w != undefined ){
+		w.terminate(); //on met fin au worker
+		w = undefined; //On le met undefined pour qu'on puisse le recreer plus tard
+	}
+	
+	if($("#nombreJetons").text() != '-')
+	{
+		$("#etatCompter").html("Jetons(Vieux)"); //si on avait déjà compté un texte, on garde la donnée, mais on indique qu'elle est vieille
+	}
+	
+	//Réinitialisation de la barre de progression à 0
+	$(".progress-bar").css("width", 0 + "%"); 
+	$("#progression").css("width", 0 + "%");
+	$("#progression").html(0 + "%");
+	
 	
 }
